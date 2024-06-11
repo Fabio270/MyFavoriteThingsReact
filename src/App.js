@@ -1,66 +1,66 @@
 import { useState } from 'react';
 import Banner from './componentes/Banner';
 import Formulario from './componentes/Formulario';
-import Time from './componentes/Time';
+import Categoria from './componentes/Categoria';
 
 function App() {
 
-  const times = [
+  const categorias = [
     {
-      nome: 'Programação',
+      nome: 'Jogos',
       corPrimaria: '#57C278',
       corSecundaria: '#D9F7E9'
     },
     {
-      nome: 'Front-End',
+      nome: 'Filmes',
       corPrimaria: '#82CFFA',
       corSecundaria: '#E8F8FF'
     },
     {
-      nome: 'Data Science',
+      nome: 'Séries',
       corPrimaria: '#A6D157',
       corSecundaria: '#F0F8E2'
     },
     {
-      nome: 'Devops',
+      nome: 'Comidas',
       corPrimaria: '#E06B69',
       corSecundaria: '#FDE7E8'
     },
     {
-      nome: 'UX e Design',
+      nome: 'Pessoas',
       corPrimaria: '#DB6EBF',
       corSecundaria: '#FAE9F5'
     },
     {
-      nome: 'Mobile',
+      nome: 'Músicas',
       corPrimaria: '#FFBA05',
       corSecundaria: '#FFF5D9'
     },
     {
-      nome: 'Inovação e Gestão',
+      nome: 'Livros',
       corPrimaria: '#FF8A29',
       corSecundaria: '#FFEEDF'
     }
   ]
 
-  const [colaboradores, setColaboradores] = useState([])
+  const [coisas, setCoisas] = useState([])
 
-  const aoNovoColaboradorAdicionado = (colaborador) => {
+  const aoNovaCoisaAdicionada = (coisa) => {
     debugger
-    setColaboradores([...colaboradores, colaborador])
+    setCoisas([...coisas, coisa])
   }
 
   return (
     <div className="App">
       <Banner />
-      <Formulario times={times.map(time => time.nome)} aoColaboradorCadastrado={colaborador => aoNovoColaboradorAdicionado(colaborador)}/>
+      <Formulario categoria={categorias.map(categoria => categoria.nome)} aoCoisaCadastrada={coisa => aoNovaCoisaAdicionada(coisa)}/>
 
-      {times.map(time => <Time 
-        key={time.nome} 
-        nome={time.nome} 
-        corPrimaria={time.corPrimaria} 
-        corSecundaria={time.corSecundaria} 
-        colaboradores={colaboradores.filter(colaborador => colaborador.time === time.nome)}
+      {categorias.map(categoria => <Categoria 
+        key={categoria.nome} 
+        nome={categoria.nome} 
+        corPrimaria={categoria.corPrimaria} 
+        corSecundaria={categoria.corSecundaria} 
+        coisa={coisas.filter(coisa => coisa.categoria === categoria.nome)}
       />)}   
 
     </div>
